@@ -9,7 +9,7 @@ public class BMICalcImpl implements BMICalc {
 			throw new RuntimeException("Dichos datos no pueden ser menor que cero");
 
 		}
-		if (mass > 500 || height > 2.60) {
+		if (mass >= 500 || height >= 2.60) {
 
 			throw new RuntimeException("Dichos datos no pueden ser tan grandes");
 		} else {

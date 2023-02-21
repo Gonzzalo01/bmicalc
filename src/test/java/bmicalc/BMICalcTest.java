@@ -66,4 +66,36 @@ public class BMICalcTest {
 			assertEquals(imc,Ej.bmi(ListM[i], ListH[i]));
 		}
 	}
+	
+	@Test
+	public void bmiLimitTest1() {
+		double [] ListM= {-1,-1,0,0,0,0,-1,10};
+		double [] ListH= {-1,10,0,1,-1,10,0,0};
+		for (int i = 0; i < ListH.length; i++) {
+			try {
+				Ej.bmi(ListM[i],ListH[i]);
+				fail();
+			}catch (RuntimeException Exc){
+				
+			}catch(Exception Exc) {
+				fail();
+			}
+		}
+		
+	}
+	public void bmiLimitTest2() {
+		double [] ListM= {500,500,501,499,499};
+		double [] ListH= {2.60,2.59,2.59,2.60,2.61};
+		for (int i = 0; i < ListH.length; i++) {
+			try {
+				Ej.bmi(ListM[i],ListH[i]);
+				fail();
+			}catch (RuntimeException Exc){
+				
+			}catch(Exception Exc) {
+				fail();
+			}
+		}
+	}
+	
 }
