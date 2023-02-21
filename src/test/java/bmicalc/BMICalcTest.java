@@ -1,5 +1,7 @@
 package bmicalc;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -13,7 +15,7 @@ public class BMICalcTest {
 	final double[] ListValNor = { 16, 19.5, 27, 33 };
 	final double[] ListValLimit = { 17.5, 24.99, 29.99, 30 };
 	final String[] CategoriaIMC = { "UNDERWEIGHT", "NORMAL", "OVERWEIGHT", "OBESE" };
-	final double[] bmiListMass1 = {};
+	final double[] waistCirc = { 90, 91, 81, 80,89,78,79,58};
 	BMICalcImpl Ej = new BMICalcImpl();
 
 	@Test
@@ -62,40 +64,65 @@ public class BMICalcTest {
 		double[] ListH = { 1.75, 1.20, 1.80 };
 		for (int i = 0; i < ListH.length; i++) {
 			double h = Math.pow(ListH[i], 2);
-			double imc= ListM[i]/h;
-			assertEquals(imc,Ej.bmi(ListM[i], ListH[i]));
+			double imc = ListM[i] / h;
+			assertEquals(imc, Ej.bmi(ListM[i], ListH[i]));
+		}
+	}
+
+	@Test
+	public void bmiLimitTest1() {
+		double[] ListM = { -1, -1, 0, 0, 0, 0, -1, 10 };
+		double[] ListH = { -1, 10, 0, 1, -1, 10, 0, 0 };
+		for (int i = 0; i < ListH.length; i++) {
+			try {
+				Ej.bmi(ListM[i], ListH[i]);
+				fail();
+			} catch (RuntimeException Exc) {
+
+			} catch (Exception Exc) {
+				fail();
+			}
+		}
+
+	}
+
+	@Test
+	public void bmiLimitTest2() {
+		double[] ListM = { 500, 500, 501, 499, 499 };
+		double[] ListH = { 2.60, 2.59, 2.59, 2.60, 2.61 };
+		for (int i = 0; i < ListH.length; i++) {
+			try {
+				Ej.bmi(ListM[i], ListH[i]);
+				fail();
+			} catch (RuntimeException Exc) {
+
+			} catch (Exception Exc) {
+				fail();
+			}
+		}
+	}
+
+	@Test
+	public void abdObT1() {
+
+		for (int i = 0; i < 2; i++) {
+			assertTrue(Ej.abdominalObesity(waistCirc[i], 'M'));
+
+			for (i = 2; i < 4; i++) {
+				assertTrue(Ej.abdominalObesity(waistCirc[i], 'F'));
+
+			}
 		}
 	}
 	
 	@Test
-	public void bmiLimitTest1() {
-		double [] ListM= {-1,-1,0,0,0,0,-1,10};
-		double [] ListH= {-1,10,0,1,-1,10,0,0};
-		for (int i = 0; i < ListH.length; i++) {
-			try {
-				Ej.bmi(ListM[i],ListH[i]);
-				fail();
-			}catch (RuntimeException Exc){
-				
-			}catch(Exception Exc) {
-				fail();
-			}
+	public void abdObT2() {
+		for (int i = 4; i < 6; i++) {
+			assertFalse(Ej.abdominalObesity(waistCirc[i], 'M'));
 		}
-		
-	}
-	public void bmiLimitTest2() {
-		double [] ListM= {500,500,501,499,499};
-		double [] ListH= {2.60,2.59,2.59,2.60,2.61};
-		for (int i = 0; i < ListH.length; i++) {
-			try {
-				Ej.bmi(ListM[i],ListH[i]);
-				fail();
-			}catch (RuntimeException Exc){
-				
-			}catch(Exception Exc) {
-				fail();
-			}
+		for (int i = 6; i < 8; i++) {
+			assertFalse(Ej.abdominalObesity(waistCirc[i], 'F'));
+
 		}
 	}
-	
 }
