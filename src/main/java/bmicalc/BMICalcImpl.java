@@ -6,9 +6,12 @@ public class BMICalcImpl implements BMICalc {
 		double imc = 0;
 		if (mass <= 0 || height <= 0) {
 
+			throw new RuntimeException("Dichos datos no pueden ser menor que cero");
+
 		}
 		if (mass > 500 || height > 2.60) {
 
+			throw new RuntimeException("Dichos datos no pueden ser tan grandes");
 		} else {
 			double h2 = Math.pow(height, 2);
 			imc = mass / h2;

@@ -9,10 +9,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class BMICalcTest {
-	final double[] ListValLimit2= {0,50,51};
+	final double[] ListValLimit2 = { 0, 50, 51 };
 	final double[] ListValNor = { 16, 19.5, 27, 33 };
 	final double[] ListValLimit = { 17.5, 24.99, 29.99, 30 };
 	final String[] CategoriaIMC = { "UNDERWEIGHT", "NORMAL", "OVERWEIGHT", "OBESE" };
+	final double[] bmiListMass1 = {};
 	BMICalcImpl Ej = new BMICalcImpl();
 
 	@Test
@@ -39,20 +40,30 @@ public class BMICalcTest {
 		}
 
 	}
-	
-	@Test 
+
+	@Test
 	public void cateLimit2() {
 		for (int i = 0; i < ListValLimit2.length; i++) {
 			try {
 				Ej.category(ListValLimit2[i]);
 				fail();
-			}
-			catch(RuntimeException exce){
-				
-			}
-			catch(Exception exce) {
+			} catch (RuntimeException exce) {
+
+			} catch (Exception exce) {
 				fail();
 			}
+		}
+
+	}
+
+	@Test
+	public void bmiTest() {
+		double[] ListM = { 23, 45, 78 };
+		double[] ListH = { 1.75, 1.20, 1.80 };
+		for (int i = 0; i < ListH.length; i++) {
+			double h = Math.pow(ListH[i], 2);
+			double imc= ListM[i]/h;
+			assertEquals(imc,Ej.bmi(ListM[i], ListH[i]));
 		}
 	}
 }

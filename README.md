@@ -13,6 +13,10 @@ Test cateLimit2:
 	-En una lista guardamos unos valores que deberian lanzar una excepcion, por lo que con un bucle y la lista comprobamos que se cumple el lanzamiento de la excepcion esperada.
 	
 
+Test bmiTest:
+	-Declaro dos listas una con valores de masa y otra con valores de altura. Creo un bucle for que recorra la lista y compruebe paso a paso que se comprueba la condicion del assertEqual.
+	
+
  
 
 
