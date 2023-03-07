@@ -28,7 +28,8 @@ Test abdObT1:
 Test abdObT2:
 	-Este test esta formado igual que el anterior la única diferencia es que comprobamos el funcionamiento de este introduciendo valores que deberian ser falsos a la hora de hablar si el paciente está obeso.
 	
-	
+
+![Model.jgp] (https://github.com/Gonzzalo01/bmicalc/blob/main/doc/Model.jpg)
  
 
 
